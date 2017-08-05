@@ -2,7 +2,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,14 +16,12 @@ public class MainAsron {
 		Map<Integer, List<Object>> mapp = new HashMap<Integer, List<Object>>();
 
 		totalDistance = Before.hasDouble();
-		System.out.println(totalDistance);
 		
 		List<Object> list = new ArrayList<Object>();
 		mapp.put(0,list);
 		list.add(Before.hasFloat());
 		list.add(Before.hasFloat());
 		
-		System.out.println(mapp.get(0));
 		
 	}
 
