@@ -34,14 +34,16 @@ public class PickMain {
 		//System.out.println("function");
 		
 		if(toPick == 0 ){
-			System.out.println(picked);
+			System.out.println("a :"+picked);
 			return;
 		}
 		
 		int smallest = picked.isEmpty() ? 0 : picked.get(picked.size()-1)+1;
+		System.out.println("b :"+smallest);
 		
 		for(int next = smallest ; next < total ; next++){
 			picked.add(next);
+			System.out.println("c :"+next+ " d :"+picked+ " picked.size() :"+picked.size()+" toPick-1 :"+(toPick-1));
 			pick(total, new ArrayList<Integer>(picked), toPick-1);
 			picked.remove(picked.size()-1);
 		}
