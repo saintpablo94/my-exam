@@ -52,23 +52,33 @@ public class Hungarian {
 
   // random test
   public static void main(String[] args) {
-    Random rnd = new Random(1);
-    for (int step = 0; step < 1000; step++) {
-      int n = rnd.nextInt(8) + 1;
-      int m = n + rnd.nextInt(9 - n);
-      int[][] a = new int[n + 1][m + 1];
-      for (int i = 1; i <= n; i++) {
-        for (int j = 1; j <= m; j++) {
-          a[i][j] = rnd.nextInt(100000);
-        }
+    
+	  Scanner sc = new Scanner(System.in);
+      System.out.println("Enter the dimentsions of the cost matrix: ");
+      System.out.println("r:");
+      int n = sc.nextInt();
+      System.out.println("c:");
+      int m = sc.nextInt();
+      System.out.println("Enter the cost matrix: <row wise>");
+      int[][] a = new int[n][m];
+      for (int i = 0; i < n; i++)
+      {
+          for (int j = 0; j < m; j++)
+          {
+              a[i][j] = sc.nextInt();
+          }
       }
+      
       int res1 = solveAssignmentProblem(a);
-      int res2 = solveAssignmentProblemSlow(a);
-      if (res1 != res2) {
-        System.err.println(res1 + " " + res2);
-      }
-    }
+      
+      System.out.println(res1);
+      
+//      int res2 = solveAssignmentProblemSlow(a);
+//      if (res1 != res2) {
+//        System.err.println(res1 + " " + res2);
+//      }      
   }
+  
 
   static int solveAssignmentProblemSlow(int[][] a) {
     int n = a.length - 1;
