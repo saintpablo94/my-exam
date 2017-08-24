@@ -5,25 +5,24 @@ import java.util.Scanner;
 public class PreTestFirst {
 
 	public static void main(String[] args) {
-		// system in 은 간단하게
-		Scanner sc = new Scanner(System.in);
+		// system in 은 간단하게 try catch 체크 스킵 무조건 정수 가정 
+		Scanner inputValue = new Scanner(System.in);
 		System.out.println("width = ");
-		int width = sc.nextInt();
+		int width = inputValue.nextInt();
 		System.out.println("height = ");
-		int height = sc.nextInt();
+		int height = inputValue.nextInt();
 
 		// 초기화
 		int up = 0, y = 0, odds = 0;
-
 		// 재귀함수 고고
 		System.out.println(search(width, height, up, y, odds));
-
+		inputValue.close();
 	}
 
-	// row를 뒤지자
+	// row를 뒤지자 
 	private static int search(int width, int height, int up, int y, int odds) {
 
-		// 비트 반전 width가 1이면 3 나오게..
+		// 비트 반전 width가 2이면 7 .
 		int XOR_ROW = (1 << (width + 1)) - 1;
 
 		// 위의 행까지 홀수수가 2보다 크면 제외
@@ -68,6 +67,10 @@ public class PreTestFirst {
 		for (int a = 0; a < (1 << width); a++) {
 			// 두번쨰 사선 / 뒤지기
 			for (int b = 0; b < (1 << width); b++) {
+				
+				//System.out.print("toBinaryString  :"+Integer.toBinaryString(row ^ up ^ a << 1 ^ b));
+				
+				
 				int lieOddsCnt = 0;
 				int fromIndex = -1;
 				// << 우선 ^ 은 나중.
