@@ -27,7 +27,7 @@ public class PreTestFirst {
 
 		// 위의 행까지 홀수수가 2보다 크면 제외
 		if (odds > 2) {
-			return 0;
+			return 0;  
 		}
 
 		// 초기값 셑
@@ -38,7 +38,7 @@ public class PreTestFirst {
 			row = XOR_ROW ^ row;
 		}
 
-		System.out.println("row :" + row + ", up :" + up + ", y :" + y + ", XOR_ROW :" + XOR_ROW);
+		//System.out.println("row :" + row + ", up :" + up + ", y :" + y + ", XOR_ROW :" + XOR_ROW);
 
 		// 맨 마지막 행은 체크 후 STOP
 		if (y == height) {
