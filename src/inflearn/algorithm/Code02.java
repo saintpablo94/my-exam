@@ -1,41 +1,64 @@
 package inflearn.algorithm;
 
+import java.util.Scanner;
+
 public class Code02 {
-	public static void main(String[] args){
-		String str = "abcd";
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+
+		String str = sc.nextLine();
+		int inputInt = sc.nextInt();
+
 		System.out.println(characterLen(str));
+		System.out.println("\n-----");
+
 		printChars(str);
-		System.out.println("");
-		System.out.println("-----");
-		System.out.println("");
+
+		System.out.println("\n-----");
+
 		printCharsReverse(str);
-		
+
+		System.out.println("\n-----");
+
+		printInBinary(inputInt);
+
+		System.out.println("\n-----");
+
+	}
+
+	private static void printInBinary(int inputInt) {
+		if (inputInt < 2) {
+			System.out.print(inputInt);
+		} else {
+			printInBinary(inputInt / 2);
+			System.out.print(inputInt % 2);
+		}
 	}
 
 	private static void printCharsReverse(String str) {
-		if(str.length() == 0){
+		if (str.length() == 0) {
 			return;
-		}else{
+		} else {
 			printCharsReverse(str.substring(1));
 			System.out.print(str.charAt(0));
 		}
 	}
 
 	private static void printChars(String str) {
-		if(str.length() == 0){
-			return ;
-		}else{
+		if (str.length() == 0) {
+			return;
+		} else {
 			System.out.print(str.charAt(0));
 			printChars(str.substring(1));
 		}
-		
+
 	}
 
 	private static int characterLen(String str) {
-		if(str.equals("")){
+		if (str.equals("")) {
 			return 0;
-		}else{
-			return 1+characterLen(str.substring(1));
+		} else {
+			return 1 + characterLen(str.substring(1));
 		}
 	}
 }
