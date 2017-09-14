@@ -71,8 +71,7 @@ public class PreTestThird {
 			s[i] = s[i + 1] + a[i];
 		for (int rem = 0;; rem++)
 			if (go(0, 0, 0, rem)) {
-				printCase();
-				out.println(ans + k * rem);				
+				printCase(ans + k * rem);
 				return;
 			}
 	}
@@ -92,9 +91,9 @@ public class PreTestThird {
 		return false;
 	}
 
-	static void printCase() {
-		out.print("Test Case " + test + ": ");
-	}	
+	static void printCase(int result) {
+		System.out.println("Test Case " + test + ": " + result);
+	}
 
 	static int nextInt() throws IOException {
 		return parseInt(next());
@@ -106,25 +105,37 @@ public class PreTestThird {
 		return tok.nextToken();
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		try {
 
+			// 입력 귀찮다 그냥 파일로 받자
 			System.setIn(new FileInputStream("CandySample.txt"));
-			System.setOut(new PrintStream(new FileOutputStream("CandyResult.txt")));
-
 			in = new BufferedReader(new InputStreamReader(System.in));
+
+			// 결과도 파일 로 받아보자. 주석처리하면 SYSOUT으로
+			System.setOut(new PrintStream(new FileOutputStream("CandyResult.txt")));
 			out = new PrintWriter(new OutputStreamWriter(System.out));
+
+			// test case total
 			int tests = nextInt();
-			
+
+			// 함수소요 시간 start
+			long startTime = System.nanoTime();
+
 			for (test = 1; test <= tests; test++) {
 				solve();
 			}
-			
-			in.close();
-			out.close();
+
+			// 함수소용 시간 end
+			double timeSpent = System.nanoTime() - startTime;
+			System.out.println("Time Spend : " + timeSpent + " ns");
+
 		} catch (Throwable e) {
 			e.printStackTrace();
 			exit(1);
+		} finally {
+			in.close();
+			out.close();
 		}
 	}
 }

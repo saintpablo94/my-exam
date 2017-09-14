@@ -40,7 +40,7 @@ public class PreTestSecond {
 		Arrays.fill(matchSalesManByJob, -1);
 	}
 
-	protected void computeInitialFeasibleSolution() {
+	private void computeInitialFeasibleSolution() {
 		for (int j = 0; j < dim; j++) {
 			salesFee[j] = Double.POSITIVE_INFINITY;
 		}
@@ -54,7 +54,7 @@ public class PreTestSecond {
 	}
 
 	public int[] execute() {
-		
+
 		reduce();
 		computeInitialFeasibleSolution();
 		greedyMatch();
@@ -72,8 +72,9 @@ public class PreTestSecond {
 		}
 		return result;
 	}
-
-	protected void executePhase() {
+	
+	//복잡하지만 그냥 고고 
+	private void executePhase() {
 		while (true) {
 			int minSlackWorker = -1, minSlackJob = -1;
 			double minSlackValue = Double.POSITIVE_INFINITY;
@@ -91,7 +92,7 @@ public class PreTestSecond {
 			}
 			parentSalesManByCommittedJob[minSlackJob] = minSlackWorker;
 			if (matchSalesManByJob[minSlackJob] == -1) {
-				
+
 				int committedJob = minSlackJob;
 				int parentWorker = parentSalesManByCommittedJob[committedJob];
 				while (true) {
@@ -105,7 +106,7 @@ public class PreTestSecond {
 				}
 				return;
 			} else {
-				
+
 				int worker = matchSalesManByJob[minSlackJob];
 				committedSalesMan[worker] = true;
 				for (int j = 0; j < dim; j++) {
@@ -121,7 +122,7 @@ public class PreTestSecond {
 		}
 	}
 
-	protected int fetchUnmatchedSalesMan() {
+	private int fetchUnmatchedSalesMan() {
 		int w;
 		for (w = 0; w < dim; w++) {
 			if (matchJobBySalesMan[w] == -1) {
@@ -131,7 +132,7 @@ public class PreTestSecond {
 		return w;
 	}
 
-	protected void greedyMatch() {
+	private void greedyMatch() {
 		for (int w = 0; w < dim; w++) {
 			for (int j = 0; j < dim; j++) {
 				if (matchJobBySalesMan[w] == -1 && matchSalesManByJob[j] == -1
@@ -142,7 +143,7 @@ public class PreTestSecond {
 		}
 	}
 
-	protected void initializePhase(int w) {
+	private void initializePhase(int w) {
 		Arrays.fill(committedSalesMan, false);
 		Arrays.fill(parentSalesManByCommittedJob, -1);
 		committedSalesMan[w] = true;
@@ -152,12 +153,12 @@ public class PreTestSecond {
 		}
 	}
 
-	protected void match(int w, int j) {
+	private void match(int w, int j) {
 		matchJobBySalesMan[w] = j;
 		matchSalesManByJob[j] = w;
 	}
 
-	protected void reduce() {
+	private void reduce() {
 		for (int w = 0; w < dim; w++) {
 			double min = Double.POSITIVE_INFINITY;
 			for (int j = 0; j < dim; j++) {
@@ -187,7 +188,7 @@ public class PreTestSecond {
 		}
 	}
 
-	protected void updateLabeling(double slack) {
+	private void updateLabeling(double slack) {
 		for (int w = 0; w < dim; w++) {
 			if (committedSalesMan[w]) {
 				salesMan[w] += slack;
@@ -202,27 +203,27 @@ public class PreTestSecond {
 		}
 	}
 
-/* 
- * sample : rows 8 * cols8 
- * 
-82	83	69	92	90	65	75	80
-77	37	49	92	35	85	55	65
-11	69	5	86	125	95	90	105
-23	47	98	23	45	110	95	115
-72	65	84	77	90	105	46	71
-64	73	120	83	100	67	45	81
-83	59	67	92	49	103	54	47
-99	88	37	79	67	80	74	109
+	/*
+	 * sample : rows 8 * cols8
+	 * 
+	 * 82 83 69 92 90 65 75 80 
+	 * 77 37 49 92 35 85 55 65 
+	 * 11 69 5 86 125 95 90 105
+	 * 23 47 98 23 45 110 95 115 
+	 * 72 65 84 77 90 105 46 71 
+	 * 64 73 120 83 100 67 45 81 
+	 * 83 59 67 92 49 103 54 47 
+	 * 99 88 37 79 67 80 74 109
+	 *
+	 * 
+	 * sample : row 4 * cols 4
+	 *
+	 * 90 75 65 80 
+	 * 35 85 55 65 
+	 * 125 95 90 105 
+	 * 45 110 95 115
+	 */
 
- *
- * sample : row 4 * cols 4
- *
-90 75 65 80
-35 85 55 65
-125 95 90 105
-45 110 95 115
-*/
-	
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		System.out.print("rows : ");
@@ -237,28 +238,28 @@ public class PreTestSecond {
 				feeValue[i][j] = sc.nextDouble();
 			}
 		}
-		
-//		입력값 정보 확인  
-//		System.out.println("The matrix is:");
-//		for (int i = 0; i < feeValue.length; i++) {
-//			for (int j = 0; j < feeValue[i].length; j++) {
-//				System.out.printf("%.2f\t", feeValue[i][j]);
-//			}
-//			System.out.println();
-//		}
-//		System.out.println();
-		
-//		함수소용 시간 start 
+
+		// 입력값 정보 확인
+		// System.out.println("The matrix is:");
+		// for (int i = 0; i < feeValue.length; i++) {
+		// for (int j = 0; j < feeValue[i].length; j++) {
+		// System.out.printf("%.2f\t", feeValue[i][j]);
+		// }
+		// System.out.println();
+		// }
+		// System.out.println();
+
+		// 함수소요 시간 start
 		long startTime = System.nanoTime();
 		PreTestSecond hbm = new PreTestSecond(feeValue);
 		int[] result = hbm.execute();
-//		함수소용 시간  end  
+		// 함수소용 시간 end
 		double timeSpent = System.nanoTime() - startTime;
 
 		double resultSum = 0;
-//		최소 경비 위치정보  
-//		System.out.println("SalesMan Sum Fee : " + Arrays.toString(result));
-		
+		// 최소 경비 위치정보
+		// System.out.println("SalesMan Sum Fee : " + Arrays.toString(result));
+
 		System.out.println("1. 최소경비 영업사원 리스트");
 		for (int i = 0; i < result.length; i++) {
 			System.out.print("[" + i + "][" + result[i] + "] ");
