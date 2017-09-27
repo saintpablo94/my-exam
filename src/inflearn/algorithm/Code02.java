@@ -9,22 +9,20 @@ public class Code02 {
 		String str = sc.nextLine();
 		int inputInt = sc.nextInt();
 
-		System.out.println(characterLen(str));
-		System.out.println("\n-----");
-
-		printChars(str);
-
-		System.out.println("\n-----");
-
-		printCharsReverse(str);
-
-		System.out.println("\n-----");
+//		System.out.println(characterLen(str));
+//		System.out.println("\n characterLen-----");
+//
+//		printChars(str);
+//		System.out.println("\n printChars-----");
+//
+//		printCharsReverse(str);
+//		System.out.println("\n printCharsReverse-----");
 
 		printInBinary(inputInt);
-
-		System.out.println("\n-----");
-
+		System.out.println("\n printInBinary-----");
+		
 	}
+
 
 	private static void printInBinary(int inputInt) {
 		if (inputInt < 2) {

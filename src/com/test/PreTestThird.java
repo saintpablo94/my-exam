@@ -14,6 +14,8 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.PrintStream;
 import java.io.PrintWriter;
+import java.util.Arrays;
+import java.util.Scanner;
 import java.util.StringTokenizer;
 
 public class PreTestThird {
@@ -67,13 +69,20 @@ public class PreTestThird {
 			a[i] /= k;
 		}
 		sort(a);
+		// System.out.println(Arrays.toString(a));
+		// System.out.println(ans);
 		for (int i = n - 1; i >= 0; i--)
 			s[i] = s[i + 1] + a[i];
-		for (int rem = 0;; rem++)
+
+		// System.out.println(Arrays.toString(s));
+		for (int rem = 0;; rem++) {
+			// System.out.println(rem);
 			if (go(0, 0, 0, rem)) {
+				// System.out.println(ans+"+"+k+"*"+rem);
 				printCase(ans + k * rem);
 				return;
 			}
+		}
 	}
 
 	static boolean go(int i, int v, long mask, int rem) {
@@ -96,25 +105,34 @@ public class PreTestThird {
 	}
 
 	static int nextInt() throws IOException {
-		return parseInt(next());
+		return parseInt(sc.next());
 	}
 
 	static String next() throws IOException {
 		while (tok == null || !tok.hasMoreTokens())
-			tok = new StringTokenizer(in.readLine());
+			try {
+				tok = new StringTokenizer(in.readLine());
+			} catch (IOException e) {
+
+			}
+
 		return tok.nextToken();
 	}
 
 	public static void main(String[] args) throws IOException {
+
 		try {
+			// 입력받기때문에 파일로 받을때는 주석처리
+			sc.init();
 
 			// 입력 귀찮다 그냥 파일로 받자
-			System.setIn(new FileInputStream("CandySample.txt"));
-			in = new BufferedReader(new InputStreamReader(System.in));
+			// System.setIn(new FileInputStream("CandySample.txt"));
+			// in = new BufferedReader(new InputStreamReader(System.in));
 
 			// 결과도 파일 로 받아보자. 주석처리하면 SYSOUT으로
-			System.setOut(new PrintStream(new FileOutputStream("CandyResult.txt")));
-			out = new PrintWriter(new OutputStreamWriter(System.out));
+			// System.setOut(new PrintStream(new
+			// FileOutputStream("CandyResult.txt")));
+			// out = new PrintWriter(new OutputStreamWriter(System.out));
 
 			// test case total
 			int tests = nextInt();
@@ -137,5 +155,30 @@ public class PreTestThird {
 			in.close();
 			out.close();
 		}
+	}
+
+	static class sc {
+		private static BufferedReader br;
+		private static StringTokenizer st;
+
+		static void init() {
+			br = new BufferedReader(new InputStreamReader(System.in));
+			st = new StringTokenizer("");
+		}
+
+		static String next() {
+			while (st == null || !st.hasMoreTokens()) {
+				try {
+					st = new StringTokenizer(br.readLine());
+				} catch (IOException e) {
+				}
+			}
+			return st.nextToken();
+		}
+
+		static int nextInt() {
+			return Integer.parseInt(next());
+		}
+
 	}
 }

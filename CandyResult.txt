@@ -1,0 +1,6 @@
+Test Case 1: 55
+Test Case 2: 4378
+Test Case 3: 3344
+Test Case 4: 1904
+Test Case 5: 1174
+Time Spend : 2.40207206E8 ns
